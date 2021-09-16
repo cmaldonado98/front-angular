@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
-import { pink } from 'src/environments/environment';
-import { orange } from 'src/environments/environment';
+//import { pink } from 'src/environments/environment';
+//import { orange } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +10,7 @@ import { orange } from 'src/environments/environment';
 })
 export class HeaderComponent implements OnInit {
 
-  pinkFront = pink;
+  //pinkFront = pink;
 
   constructor(private router:Router) { }
 
@@ -20,6 +20,10 @@ export class HeaderComponent implements OnInit {
   logOut(){
     sessionStorage.removeItem("cedula");
     this.router.navigate(['login']);
+  }
+
+  supermercados(){
+    this.router.navigate(['supermercados']);
   }
 
 }

@@ -3,8 +3,8 @@ import { ProductoComponent } from '../producto/producto.component';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ApiPagosServicio } from 'src/app/servicios/api/api-pagos.service';
-import { pink } from 'src/environments/environment';
-import { orange } from 'src/environments/environment';
+//import { pink } from 'src/environments/environment';
+//import { orange } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pago',
@@ -13,8 +13,8 @@ import { orange } from 'src/environments/environment';
 })
 export class PagoComponent implements OnInit {
 
-  pinkFront = pink;
-  orangeFront = orange;
+  //pinkFront = pink;
+  //orangeFront = orange;
 
   tcuenta: string[] = ["debito bancario", "tarjeta de credito"];
   precio: number = 0;
