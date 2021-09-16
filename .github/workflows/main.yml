@@ -31,13 +31,11 @@ jobs:
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       # Runs a single command using the runners shell
-      - name: cd carpeta
+      - name: docker build
         run: |
           cd Trainee-Shop
           ls
-      - name: docker build
-        run: |
-          docker build -t cmaldonado98/front-angular:${{ github.event.head_commit.message }} ./Trainee-Shop/
+          docker build -t cmaldonado98/front-angular:${{ github.event.head_commit.message }} .
       - name: docker push
         run: |
           docker push cmaldonado98/front-angular:${{ github.event.head_commit.message }}
