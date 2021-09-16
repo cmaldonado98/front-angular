@@ -43,6 +43,8 @@ jobs:
 
       - name: Variable tag docker
         run: |
+          cd Trainee-Shop
+          ls
           sed -i'' -e 's/IMAGE_LABEL/${{ github.event.head_commit.message }}/g' deploymentangular.yaml
       - name: Build and push CONTAINER_NAME
         uses: ianbelcher/eks-kubectl-action@master
