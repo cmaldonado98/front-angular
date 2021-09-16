@@ -18,8 +18,8 @@ jobs:
         with:
           projectBaseDir: ${{env.GITHUB_WORKSPACE}}
           args: >
-            -Dsonar.organization=cmaldonado98_front-angular
-            -Dsonar.projectKey=cmaldonado98
+            -Dsonar.organization=cmaldonado98
+            -Dsonar.projectKey=cmaldonado98_front-angular
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
