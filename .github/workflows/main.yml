@@ -16,7 +16,7 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         with:
-          projectBaseDir: my-custom-directory
+          projectBaseDir: ${{env.GITHUB_WORKSPACE}}
           args: >
             -Dsonar.organization=cmaldonado98_front-angular
             -Dsonar.projectKey=cmaldonado98
