@@ -1,19 +1,23 @@
-#Primera Etapa
-FROM node:current-alpine3.14 as build-step
+FROM node:14.17 as builder
 
-RUN mkdir -p /app
+ARG WORK_DIR=/Front-Angular
+ENV PATH ${WORK_DIR}/node_modules/.bin:$PATH
 
-WORKDIR /app
+RUN mkdir ${WORK_DIR}
+WORKDIR ${WORK_DIR}
 
-COPY package.json /app
+COPY package.json ${WORK_DIR}
+COPY package-lock.json ${WORK_DIR}
 
+RUN npm install -g @angular/cli@12.2.4
 RUN npm install
+RUN npm install @angular/animations --save
+RUN npm install primeng --save
+RUN npm install chart.js --save
+RUN npm install --save @types/chart.js
 
-COPY . /app
+COPY . ${WORK_DIR}
 
-RUN npm run build
+EXPOSE 4200
 
-#Segunda Etapa
-FROM nginx:1.17.1-alpine
-	#Si estas utilizando otra aplicacion cambia PokeApp por el nombre de tu app
-COPY --from=build-step /app/dist/Trainee-Shop /usr/share/nginx/html
+CMD ng serve
