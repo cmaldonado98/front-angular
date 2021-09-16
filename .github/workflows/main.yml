@@ -23,3 +23,29 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          
+      - name: docker login
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      # Runs a single command using the runners shell
+      - name: docker build
+        run: |
+          docker build . -t cmaldonado98/front-angular:${{ github.event.head_commit.message }}
+      - name: docker push
+        run: |
+          docker push cmaldonado98/front-angular:${{ github.event.head_commit.message }}
+
+      - name: Variable tag docker
+        run: |
+          sed -i'' -e 's/IMAGE_LABEL/${{ github.event.head_commit.message }}/g' deploymentangular.yaml
+      - name: Build and push CONTAINER_NAME
+        uses: ianbelcher/eks-kubectl-action@master
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: ${{ secrets.AWS_REGION }}
+          cluster_name: ${{ secrets.CLUSTER_NAME }}
+          args: apply -f ./deploymentangular.yaml
