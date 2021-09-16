@@ -60,6 +60,7 @@ export class PagoComponent implements OnInit {
           repuestapago => {
             if (repuestapago.code == 0) {
               alert('Pago realizado exitosamente');
+              this.router.navigate(['supermercados']);
             } else {
               alert('Error al realizar pago');
             }
