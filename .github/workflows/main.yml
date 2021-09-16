@@ -33,7 +33,10 @@ jobs:
       # Runs a single command using the runners shell
       - name: docker build
         run: |
-          docker build ./Trainee-Shop/. -t cmaldonado98/front-angular:${{ github.event.head_commit.message }}
+          cd Trainee-Shop
+      - name: docker build
+        run: |
+          docker build -t cmaldonado98/front-angular:${{ github.event.head_commit.message }} .
       - name: docker push
         run: |
           docker push cmaldonado98/front-angular:${{ github.event.head_commit.message }}
