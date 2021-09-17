@@ -55,6 +55,9 @@ jobs:
           aws_region: ${{ secrets.AWS_REGION }}
           cluster_name: ${{ secrets.CLUSTER_NAME }}
           args: apply -f ./Trainee-Shop/deploymentangular.yaml
+
+
+          
 #       - name: Install dependencies
 #         run: |
 #              python -m pip install --upgrade pip
