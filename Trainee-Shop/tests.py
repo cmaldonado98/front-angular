@@ -18,8 +18,8 @@ import unittest
 # options = webdriver.ChromeOptions()
 # options.add_argument('--start-maximized')
 # options.add_argument('--disable-extensions')
-driver_path = './Drivers/chromedriver.exe'
-driver = webdriver.Firefox()
+driver_path = './Drivers/geckodriver.exe'
+driver = webdriver.Firefox(executable_path = driver_path)
 #Iniciar en la pantalla 2
 driver.set_window_position(2000,0)
 driver.maximize_window()
