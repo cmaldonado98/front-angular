@@ -1,36 +1,40 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ProductoComponent } from '../producto/producto.component';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ApiPagosServicio } from 'src/app/servicios/api/api-pagos.service';
-//import { pink } from 'src/environments/environment';
-//import { orange } from 'src/environments/environment';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-pago',
   templateUrl: './pago.component.html',
-  styleUrls: ['./pago.component.css']
+  styleUrls: ['./pago.component.css'],
+  providers: [MessageService]
 })
+
 export class PagoComponent implements OnInit {
 
-  //pinkFront = pink;
-  //orangeFront = orange;
-
   tcuenta: string[] = ["debito bancario", "tarjeta de credito"];
-  precio: number = 0;
+  precio: string = "0.00";
   nombrecli: string = "";
   ced: string = "";
   cuenta: string = "";
   opcionSeleccionado: string = "0";
   verSeleccion: string = "";
 
-  constructor(private router: Router, private http: HttpClient, private pagoservicio: ApiPagosServicio) { }
+  constructor(
+    private router: Router,
+    private pagoservicio: ApiPagosServicio,
+    private messageService: MessageService
+    ) { }
 
   ngOnInit(
   ): void {
 
-    this.precio = Math.round(Number(sessionStorage.getItem("tpvp")) * 100) / 100;
-    console.log(`precio ${this.precio}`)
+    this.precio = String(Math.round(Number(sessionStorage.getItem("tpvp")) * 100) / 100);
+    //let precioAux = this.precio.split(".");
+
+    //if (precioAux[1].length != 2) {
+    //  this.precio = this.precio + "0";
+    //}
 
     this.nombrecli = String(sessionStorage.getItem("nombre"));
     console.log(`nombrecliente ${this.nombrecli}`)
@@ -56,26 +60,28 @@ export class PagoComponent implements OnInit {
     this.pagoservicio.validarcuenta(idc, cuenta).subscribe(
       respuestaverificacion => {
         let token = respuestaverificacion.token
-        this.pagoservicio.pagarbanco(token, String(this.precio)).subscribe(
+        this.pagoservicio.pagarbanco(token, this.precio).subscribe(
           repuestapago => {
             if (repuestapago.code == 0) {
-              alert('Pago realizado exitosamente');
-              this.router.navigate(['supermercados']);
+              this.messageService.add({ key: 'myKey2', severity: 'success', summary: 'Pago realizado exitosamente' });
+              setInterval(() => {
+                this.router.navigate(['supermercados']);
+              }, 2000);
             } else {
-              alert('Error al realizar pago');
+              this.messageService.add({ key: 'myKey2', severity: 'error', summary: 'Error al realizar el pago.' });
             }
           },
           errorpago => {
             console.error(errorpago);
+            this.messageService.add({ key: 'myKey2', severity: 'error', summary: 'Error al realizar el pago.' });
           }
         )
       },
       error => {
         if (error.status == 404) {
-
-          alert('No existe la cuenta');
+          this.messageService.add({ key: 'myKey2', severity: 'warn', summary: 'No existe la cuenta.' });
         } else {
-          alert('Error al realizar la verificación');
+          this.messageService.add({ key: 'myKey2', severity: 'error', summary: 'Error al realizar la verificación.' });
 
         }
       }
