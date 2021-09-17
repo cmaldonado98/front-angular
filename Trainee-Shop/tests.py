@@ -15,9 +15,9 @@ from selenium.common.exceptions import NoSuchElementException
 import unittest
 
 #Opciones de navegacion
-options = webdriver.ChromeOptions()
-options.add_argument('--start-maximized')
-options.add_argument('--disable-extensions')
+# options = webdriver.ChromeOptions()
+# options.add_argument('--start-maximized')
+# options.add_argument('--disable-extensions')
 driver_path = './Drivers/chromedriver.exe'
 driver = webdriver.Firefox()
 #Iniciar en la pantalla 2
