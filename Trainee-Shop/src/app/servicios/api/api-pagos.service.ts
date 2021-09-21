@@ -11,7 +11,8 @@ export class ApiPagosServicio {
 
   url:string = "http://18.220.62.211:5000/users?token="+"000"+"-";
   url2:string = "http://18.220.62.211:5000/pays?token="+"000"+"-";
-  
+
+
   constructor(
     private _http:HttpClient
     ) { }
