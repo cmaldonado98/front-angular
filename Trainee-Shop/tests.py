@@ -29,7 +29,7 @@ driver.maximize_window()
 time.sleep(2)
 
 #Iniciamos el navegador
-driver.get('http://a1a17f2828c0f4d7f83ff926804b9a74-1091942866.us-west-1.elb.amazonaws.com')
+driver.get('http://a2b8287941dd54611907bf97811f50b7-532727409.us-west-1.elb.amazonaws.com')
 #driver.get('http://localhost:4200')
 
 #Apertura a Excel
