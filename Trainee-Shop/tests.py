@@ -29,7 +29,7 @@ driver.maximize_window()
 time.sleep(2)
 
 #Iniciamos el navegador
-driver.get('http://a2b8287941dd54611907bf97811f50b7-532727409.us-west-1.elb.amazonaws.com')
+driver.get('http://aae2362f2922845718f10c62e4a915eb-430291795.us-west-1.elb.amazonaws.com')
 #driver.get('http://localhost:4200')
 
 #Apertura a Excel
@@ -145,7 +145,7 @@ for i in range(2,3):
             time.sleep(1)
     time.sleep(2)
 #'''
-driver.get('http://a2b8287941dd54611907bf97811f50b7-532727409.us-west-1.elb.amazonaws.com')
+driver.get('http://aae2362f2922845718f10c62e4a915eb-430291795.us-west-1.elb.amazonaws.com')
 nombres = wb.get_sheet_by_name("test")
 wb.close()
 for i in range(2,3):
