@@ -9,8 +9,9 @@ import {Observable} from 'rxjs'
 export class ApiPagosServicio {
 
 
-  url:string = "http://18.116.14.34:5000/users?token="+"000"+"-";
-  url2:string = "http://18.116.14.34:5000/pays?token="+"000"+"-";
+  url:string = "http://18.224.2.137:5000/users?token="+"000"+"-";
+  url2:string = "http://18.224.2.137:5000/pays?token="+"000"+"-";
+  
 
   constructor(
     private _http:HttpClient
