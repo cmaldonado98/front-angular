@@ -76,4 +76,3 @@ jobs:
         run: |
              ls
              cd Trainee-Shop
-             python3 ./tests.py
